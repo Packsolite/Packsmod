@@ -1,6 +1,7 @@
 plugins {
 	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 	id 'maven-publish'
+	id 'com.gradleup.shadow' version '9.2.2'
 }
 
 version = project.mod_version
@@ -17,9 +18,16 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	mavenCentral()
 }
 
 dependencies {
+	compileOnly("org.projectlombok:lombok:1.18.42")
+	annotationProcessor("org.projectlombok:lombok:1.18.42")
+
+	testCompileOnly("org.projectlombok:lombok:1.18.42")
+	testAnnotationProcessor("org.projectlombok:lombok:1.18.42")
+
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings loom.officialMojangMappings()
@@ -27,6 +35,8 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	shadow(implementation(files('libs/jacomp3_volfix.jar')))
 }
 
 loom {
@@ -62,6 +72,11 @@ jar {
 		rename { "${it}_${inputs.properties.archivesName}" }
 	}
 }
+
+shadowJar {
+	configurations = [project.configurations.shadow]
+}
+
 
 // configure the maven publication
 publishing {

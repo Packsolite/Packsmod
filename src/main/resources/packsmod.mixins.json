@@ -3,7 +3,7 @@
 	"package": "eu.packsolite.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"PauseScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
