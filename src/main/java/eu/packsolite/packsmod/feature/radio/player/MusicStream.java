@@ -1,4 +1,4 @@
-package eu.packsolite.radio.player;
+package eu.packsolite.packsmod.feature.radio.player;
 
 import lombok.Getter;
 

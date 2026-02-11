@@ -1,12 +1,12 @@
-package eu.packsolite.radio.player;
+package eu.packsolite.packsmod.feature.radio.player;
 
-import eu.packsolite.Packsmod;
-import eu.packsolite.config.ConfigProvider;
+import eu.packsolite.packsmod.Packsmod;
+import eu.packsolite.packsmod.config.ConfigProvider;
 import jaco.mp3.player.MP3Player;
 import lombok.Getter;
 import lombok.Synchronized;
 
-import java.net.URL;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -15,21 +15,21 @@ import java.util.concurrent.Executors;
 import static java.util.Arrays.asList;
 
 public class MusicPlayer {
-	private MP3Player player;
 	private final List<MusicStream> streams = new ArrayList<>();
 	private final ExecutorService radioDispatcher = Executors.newSingleThreadExecutor();
 
 	@Getter
 	private int selectedStreamIndex;
-	private int playingStreamIndex;
 	@Getter
 	private boolean playing;
 	@Getter
 	private int volume;
 
+	private int playingStreamIndex;
+	private MP3Player player;
+
 	public MusicPlayer() {
 		this.streams.addAll(asList(MusicStream.values()));
-
 	}
 
 	public void init() {
@@ -100,7 +100,7 @@ public class MusicPlayer {
 	private void startPlaying() {
 		MusicStream stream = getSelectedStream();
 		try {
-			this.player = new MP3Player(new URL(stream.getStream()));
+			this.player = new MP3Player(URI.create(stream.getStream()).toURL());
 			this.player.setVolume(this.volume);
 			this.player.play();
 			this.playingStreamIndex = this.selectedStreamIndex;
@@ -112,7 +112,7 @@ public class MusicPlayer {
 			Packsmod.LOGGER.info("Radio is now playing stream #{}", playingStreamIndex);
 		} catch (Exception e) {
 			this.player = null;
-			e.printStackTrace();
+			Packsmod.LOGGER.error("Error starting radio with stream {}", stream, e);
 		}
 	}
 
@@ -126,6 +126,6 @@ public class MusicPlayer {
 	}
 
 	public String toString() {
-		return isPlaying() ? (getSelectedStream().getName() + " (" + volume + "%)") : "Radio off";
+		return playing ? (getSelectedStream().getName() + " (" + volume + "%)") : "Radio off";
 	}
 }

@@ -1,4 +1,4 @@
-package eu.packsolite.config;
+package eu.packsolite.packsmod.config;
 
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;

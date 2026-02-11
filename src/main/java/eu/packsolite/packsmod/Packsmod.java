@@ -1,9 +1,9 @@
-package eu.packsolite;
+package eu.packsolite.packsmod;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import eu.packsolite.config.ConfigProvider;
-import eu.packsolite.config.ModConfig;
-import eu.packsolite.radio.MusicFeature;
+import eu.packsolite.packsmod.config.ConfigProvider;
+import eu.packsolite.packsmod.config.ModConfig;
+import eu.packsolite.packsmod.feature.radio.MusicFeature;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;

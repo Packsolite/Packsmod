@@ -1,6 +1,6 @@
-package eu.packsolite.radio;
+package eu.packsolite.packsmod.feature.radio;
 
-import eu.packsolite.radio.player.MusicPlayer;
+import eu.packsolite.packsmod.feature.radio.player.MusicPlayer;
 import lombok.Getter;
 
 public enum MusicFeature {

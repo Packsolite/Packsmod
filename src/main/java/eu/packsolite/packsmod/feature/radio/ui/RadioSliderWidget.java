@@ -1,7 +1,7 @@
-package eu.packsolite.radio.ui;
+package eu.packsolite.packsmod.feature.radio.ui;
 
 
-import eu.packsolite.radio.player.MusicPlayer;
+import eu.packsolite.packsmod.feature.radio.player.MusicPlayer;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 
 import static java.lang.String.valueOf;

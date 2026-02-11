@@ -1,6 +1,6 @@
-package eu.packsolite.radio.ui;
+package eu.packsolite.packsmod.feature.radio.ui;
 
-import eu.packsolite.radio.MusicFeature;
+import eu.packsolite.packsmod.feature.radio.MusicFeature;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 
@@ -10,6 +10,9 @@ public class RadioButtons {
 
 	public static final int STATION_SELECT_BUTTON_WIDTH = 20;
 	public static final int STATION_SELECT_BUTTON_HEIGHT = 20;
+	public static final int VOLUME_SLIDER_WIDTH = 120;
+	public static final int VOLUME_SLIDER_HEIGHT = 20;
+	public static final int BUTTON_PADDING = 2;
 
 	private RadioButtons() {
 	}
