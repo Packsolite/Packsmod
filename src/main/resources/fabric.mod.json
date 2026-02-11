@@ -17,6 +17,9 @@
   "entrypoints": {
 	"main": [
 	  "eu.packsolite.Packsmod"
+	],
+	"modmenu": [
+	  "eu.packsolite.integration.ModMenuIntegration"
 	]
   },
   "mixins": [

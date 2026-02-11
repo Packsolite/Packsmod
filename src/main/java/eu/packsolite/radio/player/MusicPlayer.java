@@ -1,6 +1,7 @@
 package eu.packsolite.radio.player;
 
 import eu.packsolite.Packsmod;
+import eu.packsolite.config.ConfigProvider;
 import jaco.mp3.player.MP3Player;
 import lombok.Getter;
 import lombok.Synchronized;
@@ -28,7 +29,15 @@ public class MusicPlayer {
 
 	public MusicPlayer() {
 		this.streams.addAll(asList(MusicStream.values()));
-		this.playing = false;
+
+	}
+
+	public void init() {
+		var config = ConfigProvider.getConfig();
+		this.playing = config.radioConfig.resumeOnClientLaunch && config.radioConfig.playing;
+		this.volume = config.radioConfig.volume;
+		this.selectedStreamIndex = config.radioConfig.selectedStream;
+		this.updatePlayerState();
 	}
 
 	@Synchronized
@@ -95,6 +104,11 @@ public class MusicPlayer {
 			this.player.setVolume(this.volume);
 			this.player.play();
 			this.playingStreamIndex = this.selectedStreamIndex;
+			var configHolder = ConfigProvider.getConfigHolder();
+			configHolder.getConfig().radioConfig.playing = true;
+			configHolder.getConfig().radioConfig.volume = volume;
+			configHolder.getConfig().radioConfig.selectedStream = playingStreamIndex;
+			configHolder.save();
 			Packsmod.LOGGER.info("Radio is now playing stream #{}", playingStreamIndex);
 		} catch (Exception e) {
 			this.player = null;
@@ -105,6 +119,9 @@ public class MusicPlayer {
 	private void stopPlaying() {
 		var disposedPlayer = this.player;
 		this.player = null;
+		var configHolder = ConfigProvider.getConfigHolder();
+		configHolder.getConfig().radioConfig.playing = false;
+		configHolder.save();
 		Thread.ofVirtual().start(disposedPlayer::stop); // no need to wait after disposal
 	}
 

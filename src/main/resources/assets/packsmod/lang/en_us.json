@@ -1,0 +1,6 @@
+{
+  "text.autoconfig.packsmod.title": "Packsmod options",
+  "text.autoconfig.packsmod.option.radioConfig": "Radio",
+  "text.autoconfig.packsmod.option.radioConfig.resumeOnClientLaunch": "Resume on client launch",
+  "text.autoconfig.packsmod.option.radioConfig.resumeOnClientLaunch.@Tooltip": "Automatically resumes playback when radio was playing on last client close."
+}

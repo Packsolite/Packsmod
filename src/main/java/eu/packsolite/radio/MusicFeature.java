@@ -9,4 +9,7 @@ public enum MusicFeature {
 	@Getter
 	private final MusicPlayer musicPlayer = new MusicPlayer();
 
+	public void init() {
+		musicPlayer.init();
+	}
 }
