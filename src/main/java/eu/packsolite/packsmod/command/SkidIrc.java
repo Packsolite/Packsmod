@@ -28,7 +28,6 @@ public class SkidIrc extends SimpleIrcApi {
 	public void onInitialize() {
 		instance = this;
 		this.commandHandler = new CommandHandler();
-		Packsmod.LOGGER.info("SkidIrc initialized!");
 		ConfigProvider.getConfigHolder().registerSaveListener((holder, config) -> {
 			if (config.irc.enabled) {
 				enable();
@@ -37,15 +36,13 @@ public class SkidIrc extends SimpleIrcApi {
 			}
 			return InteractionResult.SUCCESS;
 		});
+		Packsmod.LOGGER.info("SkidIrc initialized!");
 	}
 
-	/**
-	 * Called from MinecraftClientMixin when client is fully started.
-	 */
 	@Synchronized
 	public void enable() {
 		if (client != null) {
-			this.disable();
+			return;
 		}
 		String ign = mc.getGameProfile().name();
 		String[] versionArgs = mc.getLaunchedVersion().split("-");

@@ -11,8 +11,8 @@
   "client": [
 	"ClientPacketListenerMixin",
 	"LivingEntityMixin",
-	"MinecraftMixin",
 	"PauseScreenMixin",
-	"PlayerTabOverlayMixin"
+	"PlayerTabOverlayMixin",
+	"TitleScreenMixin"
   ]
 }

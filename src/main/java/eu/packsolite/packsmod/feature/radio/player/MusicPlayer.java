@@ -73,6 +73,11 @@ public class MusicPlayer {
 		}
 	}
 
+	public void toggle() {
+		this.playing = !this.playing;
+		this.updatePlayerState();
+	}
+
 	/**
 	 * Updates the ui state to the underlying actual mp3 player on a separate thread to avoid ui freezes.
 	 */

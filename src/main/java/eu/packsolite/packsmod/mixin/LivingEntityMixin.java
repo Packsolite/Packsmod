@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 class LivingEntityMixin {
 
 	@ModifyReturnValue(method = "isCurrentlyGlowing", at = @At("RETURN"))
-	private boolean onIsCurrentlyGlowing(boolean original) {
+	boolean onIsCurrentlyGlowing(boolean original) {
 		if ((Object) this instanceof Player player) {
 			return original || GlowUtil.isGlowing(player) && ConfigProvider.getConfig().smashmc.glowReportedPlayers;
 		}
