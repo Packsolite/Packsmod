@@ -1,6 +1,7 @@
 package eu.packsolite.packsmod;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import eu.packsolite.packsmod.command.SkidIrc;
 import eu.packsolite.packsmod.config.ConfigProvider;
 import eu.packsolite.packsmod.config.ModConfig;
 import eu.packsolite.packsmod.feature.radio.MusicFeature;
@@ -35,6 +36,7 @@ public class Packsmod implements ModInitializer {
 		});
 
 		MusicFeature.INSTANCE.init();
+		SkidIrc.getInstance().onInitialize();
 		LOGGER.info("(っ◕‿◕)っ Packs mod initialized!");
 	}
 

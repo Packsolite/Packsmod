@@ -33,4 +33,11 @@ public class ModConfig implements ConfigData {
 		@ConfigEntry.Gui.Tooltip
 		public boolean glowReportedPlayers = true;
 	}
+
+	@ConfigEntry.Gui.TransitiveObject
+	public IrcConfig irc = new IrcConfig();
+
+	public static class IrcConfig {
+		public boolean enabled = true;
+	}
 }

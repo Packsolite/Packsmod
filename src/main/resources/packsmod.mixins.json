@@ -9,8 +9,9 @@
 	"requireAnnotations": true
   },
   "client": [
-	"ChatListenerMixin",
+	"ClientPacketListenerMixin",
 	"LivingEntityMixin",
+	"MinecraftMixin",
 	"PauseScreenMixin",
 	"PlayerTabOverlayMixin"
   ]

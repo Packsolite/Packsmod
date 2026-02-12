@@ -2,6 +2,7 @@ package eu.packsolite.packsmod.feature.smashmc.client;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import eu.packsolite.packsmod.Packsmod;
 import eu.packsolite.packsmod.feature.smashmc.client.model.SmashIdentity;
 
 import java.net.URI;
@@ -31,7 +32,7 @@ public class SmashWebApiClient {
 					try {
 						return gson.fromJson(json, SmashIdentity[].class);
 					} catch (RuntimeException ex) {
-						System.out.println("Failed deserializing " + json);
+						Packsmod.LOGGER.error("Failed deserializing smash api response: {}", json);
 						throw ex;
 					}
 				});

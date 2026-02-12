@@ -14,6 +14,7 @@ me, maybe for friends too.
 - Simple ingame web radio
 - Prefix for SmashMC-players on other servers
 - Glow effect for reported players
+- Minimal functional version of Skid IRC
 
 ## Build & Run
 

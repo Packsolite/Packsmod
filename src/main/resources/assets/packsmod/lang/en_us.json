@@ -7,5 +7,6 @@
   "text.autoconfig.packsmod.option.smashmc.playerPrefixes": "Show player prefixes",
   "text.autoconfig.packsmod.option.smashmc.playerPrefixes.@Tooltip": "Shows a prefix for all players that joined smashmc on other servers.",
   "text.autoconfig.packsmod.option.smashmc.glowReportedPlayers": "Glow reported players",
-  "text.autoconfig.packsmod.option.smashmc.glowReportedPlayers.@Tooltip": "Applies a glow effect to reported players when joining them."
+  "text.autoconfig.packsmod.option.smashmc.glowReportedPlayers.@Tooltip": "Applies a glow effect to reported players when joining them.",
+  "text.autoconfig.packsmod.option.irc.enabled": "Enable IRC"
 }
