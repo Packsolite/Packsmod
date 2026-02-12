@@ -34,9 +34,9 @@ public class MusicPlayer {
 
 	public void init() {
 		var config = ConfigProvider.getConfig();
-		this.playing = config.radioConfig.resumeOnClientLaunch && config.radioConfig.playing;
-		this.volume = config.radioConfig.volume;
-		this.selectedStreamIndex = config.radioConfig.selectedStream;
+		this.playing = config.radio.resumeOnClientLaunch && config.radio.playing;
+		this.volume = config.radio.volume;
+		this.selectedStreamIndex = config.radio.selectedStream;
 		this.updatePlayerState();
 	}
 
@@ -105,9 +105,9 @@ public class MusicPlayer {
 			this.player.play();
 			this.playingStreamIndex = this.selectedStreamIndex;
 			var configHolder = ConfigProvider.getConfigHolder();
-			configHolder.getConfig().radioConfig.playing = true;
-			configHolder.getConfig().radioConfig.volume = volume;
-			configHolder.getConfig().radioConfig.selectedStream = playingStreamIndex;
+			configHolder.getConfig().radio.playing = true;
+			configHolder.getConfig().radio.volume = volume;
+			configHolder.getConfig().radio.selectedStream = playingStreamIndex;
 			configHolder.save();
 			Packsmod.LOGGER.info("Radio is now playing stream #{}", playingStreamIndex);
 		} catch (Exception e) {
@@ -120,7 +120,7 @@ public class MusicPlayer {
 		var disposedPlayer = this.player;
 		this.player = null;
 		var configHolder = ConfigProvider.getConfigHolder();
-		configHolder.getConfig().radioConfig.playing = false;
+		configHolder.getConfig().radio.playing = false;
 		configHolder.save();
 		Thread.ofVirtual().start(disposedPlayer::stop); // no need to wait after disposal
 	}

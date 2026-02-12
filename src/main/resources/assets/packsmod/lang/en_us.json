@@ -1,6 +1,9 @@
 {
   "text.autoconfig.packsmod.title": "Packsmod options",
-  "text.autoconfig.packsmod.option.radioConfig": "Radio",
-  "text.autoconfig.packsmod.option.radioConfig.resumeOnClientLaunch": "Resume on client launch",
-  "text.autoconfig.packsmod.option.radioConfig.resumeOnClientLaunch.@Tooltip": "Automatically resumes playback when radio was playing on last client close."
+  "text.autoconfig.packsmod.option.radio": "Radio",
+  "text.autoconfig.packsmod.option.radio.resumeOnClientLaunch": "Resume on client launch",
+  "text.autoconfig.packsmod.option.radio.resumeOnClientLaunch.@Tooltip": "Automatically resumes playback when radio was playing on last client close.",
+  "text.autoconfig.packsmod.option.smashmc": "SmashMC",
+  "text.autoconfig.packsmod.option.smashmc.playerPrefixes": "Show player prefixes",
+  "text.autoconfig.packsmod.option.smashmc.playerPrefixes.@Tooltip": "Shows a prefix for all players that joined smashmc on other servers."
 }

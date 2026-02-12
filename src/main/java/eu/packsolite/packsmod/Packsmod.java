@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import eu.packsolite.packsmod.config.ConfigProvider;
 import eu.packsolite.packsmod.config.ModConfig;
 import eu.packsolite.packsmod.feature.radio.MusicFeature;
+import eu.packsolite.packsmod.feature.smashmc.SmashMcFeature;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -31,6 +32,7 @@ public class Packsmod implements ModInitializer {
 			while (configScreenKeyBinding.consumeClick()) {
 				openConfigScreen();
 			}
+			SmashMcFeature.INSTANCE.update();
 		});
 
 		MusicFeature.INSTANCE.init();

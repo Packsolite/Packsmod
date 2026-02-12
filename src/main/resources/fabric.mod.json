@@ -19,7 +19,7 @@
 	  "eu.packsolite.packsmod.Packsmod"
 	],
 	"modmenu": [
-	  "eu.packsolite.integration.ModMenuIntegration"
+	  "eu.packsolite.packsmod.integration.ModMenuIntegration"
 	]
   },
   "mixins": [

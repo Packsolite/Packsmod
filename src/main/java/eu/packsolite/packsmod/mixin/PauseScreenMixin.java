@@ -6,6 +6,7 @@ import eu.packsolite.packsmod.feature.radio.ui.RadioButtons;
 import eu.packsolite.packsmod.feature.radio.ui.RadioSliderWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.PauseScreen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import static eu.packsolite.packsmod.feature.radio.ui.RadioButtons.*;
 
 @Mixin({PauseScreen.class})
-class PauseScreenMixin extends net.minecraft.client.gui.screens.Screen {
+class PauseScreenMixin extends Screen {
 
 	protected PauseScreenMixin(Component title) {
 		super(title);

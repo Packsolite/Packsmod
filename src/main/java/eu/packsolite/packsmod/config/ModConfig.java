@@ -11,7 +11,7 @@ public class ModConfig implements ConfigData {
 		Documentation: https://shedaniel.gitbook.io/cloth-config/auto-config/annotations
 	 */
 	@ConfigEntry.Gui.CollapsibleObject
-	public RadioConfig radioConfig = new RadioConfig();
+	public RadioConfig radio = new RadioConfig();
 
 	public static class RadioConfig {
 		@ConfigEntry.Gui.Tooltip
@@ -22,5 +22,13 @@ public class ModConfig implements ConfigData {
 		public int volume;
 		@ConfigEntry.Gui.Excluded
 		public boolean playing;
+	}
+
+	@ConfigEntry.Gui.CollapsibleObject
+	public SmashMcConfig smashmc = new SmashMcConfig();
+
+	public static class SmashMcConfig {
+		@ConfigEntry.Gui.Tooltip
+		public boolean playerPrefixes = true;
 	}
 }
