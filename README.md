@@ -11,7 +11,9 @@ me, maybe for friends too.
 
 ## Features
 
-- nothing *yet*
+- Simple ingame web radio
+- Prefix for SmashMC-players on other servers
+- Glow effect for reported players
 
 ## Build & Run
 
