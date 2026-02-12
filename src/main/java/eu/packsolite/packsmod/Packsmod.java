@@ -24,7 +24,6 @@ public class Packsmod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("(っ◕‿◕)っ Packs mod says hello!");
 		this.configScreenKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyMapping("Packsmod options", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_P, KeyMapping.Category.MISC));
 		AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
 
@@ -36,6 +35,7 @@ public class Packsmod implements ModInitializer {
 		});
 
 		MusicFeature.INSTANCE.init();
+		LOGGER.info("(っ◕‿◕)っ Packs mod initialized!");
 	}
 
 	public void openConfigScreen() {

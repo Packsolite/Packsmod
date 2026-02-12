@@ -30,5 +30,7 @@ public class ModConfig implements ConfigData {
 	public static class SmashMcConfig {
 		@ConfigEntry.Gui.Tooltip
 		public boolean playerPrefixes = true;
+		@ConfigEntry.Gui.Tooltip
+		public boolean glowReportedPlayers = true;
 	}
 }
