@@ -21,12 +21,13 @@ class ClientPacketListenerMixin {
 	@Inject(method = "sendChat", at = @At("HEAD"), cancellable = true)
 	void onSendChatMessage(String message, CallbackInfo ci) {
 		if (message.startsWith(".") && ConfigProvider.getConfig().irc.enabled) {
-			ci.cancel();
 			String command = message.substring(1, message.split(" ")[0].length());
 			String[] arguments = message.length() > command.length() + 1
 					? message.substring(message.split(" ")[0].length() + 1).split(" ")
 					: new String[0];
-			SkidIrc.getInstance().getCommandHandler().handleCommand(command, arguments);
+			if (SkidIrc.getInstance().getCommandHandler().handleCommand(command, arguments)) {
+				ci.cancel();
+			}
 		}
 	}
 }
