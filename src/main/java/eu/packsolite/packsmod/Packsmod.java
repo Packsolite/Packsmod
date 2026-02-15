@@ -32,10 +32,10 @@ public class Packsmod implements ModInitializer {
 			while (configScreenKeyBinding.consumeClick()) {
 				openConfigScreen();
 			}
-			SmashMcFeature.INSTANCE.update();
 		});
 
 		MusicFeature.INSTANCE.init();
+		SmashMcFeature.INSTANCE.init();
 		SkidIrc.getInstance().onInitialize();
 		LOGGER.info("(っ◕‿◕)っ Packs mod initialized!");
 	}

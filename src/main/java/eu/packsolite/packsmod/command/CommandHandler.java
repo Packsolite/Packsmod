@@ -16,6 +16,8 @@ public class CommandHandler {
 			new LocalChatCommand(),
 			new MsgCommand(),
 			new RespondCommand(),
+			new BulkCommandsCommand(),
+			new StatusCommand(),
 			new HelpCommand()
 	);
 

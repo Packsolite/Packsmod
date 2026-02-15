@@ -3,6 +3,8 @@ package eu.packsolite.packsmod.feature.smashmc;
 import eu.packsolite.packsmod.Packsmod;
 import eu.packsolite.packsmod.util.GlowUtil;
 import lombok.Getter;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.network.chat.Component;
 
 import java.util.regex.Matcher;
@@ -24,8 +26,9 @@ public enum SmashMcFeature {
 
 	private final SmashApi api = new SmashApi();
 
-	public void update() {
-		api.update();
+	public void init() {
+		PayloadTypeRegistry.playC2S().register(StatusCustomPayload.TYPE, StatusCustomPayload.CODEC);
+		ClientTickEvents.END_CLIENT_TICK.register(client -> api.update());
 	}
 
 	/**
