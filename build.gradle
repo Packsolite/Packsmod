@@ -86,6 +86,10 @@ shadowJar {
 	configurations = [project.configurations.shadow]
 }
 
+remapJar {
+	dependsOn(shadowJar)
+	inputFile = tasks.shadowJar.archiveFile
+}
 
 // configure the maven publication
 publishing {
