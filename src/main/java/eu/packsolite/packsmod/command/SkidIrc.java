@@ -25,7 +25,7 @@ public class SkidIrc extends SimpleIrcApi {
 	@Getter
 	private CommandHandler commandHandler;
 
-	public void onInitialize() {
+	public void init() {
 		instance = this;
 		this.commandHandler = new CommandHandler();
 		ConfigProvider.getConfigHolder().registerSaveListener((holder, config) -> {
@@ -36,6 +36,9 @@ public class SkidIrc extends SimpleIrcApi {
 			}
 			return InteractionResult.SUCCESS;
 		});
+		if (ConfigProvider.getConfig().irc.enabled) {
+			enable();
+		}
 		Packsmod.LOGGER.info("SkidIrc initialized!");
 	}
 

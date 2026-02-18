@@ -36,7 +36,7 @@ public class Packsmod implements ModInitializer {
 
 		MusicFeature.INSTANCE.init();
 		SmashMcFeature.INSTANCE.init();
-		SkidIrc.getInstance().onInitialize();
+		SkidIrc.getInstance().init();
 		LOGGER.info("(っ◕‿◕)っ Packs mod initialized!");
 	}
 
