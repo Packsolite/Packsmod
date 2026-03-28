@@ -27,7 +27,7 @@ public enum SmashMcFeature {
 	private final SmashApi api = new SmashApi();
 
 	public void init() {
-		PayloadTypeRegistry.playC2S().register(StatusCustomPayload.TYPE, StatusCustomPayload.CODEC);
+		PayloadTypeRegistry.serverboundPlay().register(StatusCustomPayload.TYPE, StatusCustomPayload.CODEC);
 		ClientTickEvents.END_CLIENT_TICK.register(client -> api.update());
 	}
 

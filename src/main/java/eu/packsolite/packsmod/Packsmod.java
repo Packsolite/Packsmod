@@ -10,7 +10,7 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.glfw.GLFW;
@@ -25,7 +25,7 @@ public class Packsmod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		this.configScreenKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyMapping("Packsmod options", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_P, KeyMapping.Category.MISC));
+		this.configScreenKeyBinding = KeyMappingHelper.registerKeyMapping(new KeyMapping("Packsmod options", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_P, KeyMapping.Category.MISC));
 		AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {

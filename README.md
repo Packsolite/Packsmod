@@ -2,7 +2,7 @@
 
 ![WIP](https://img.shields.io/badge/status-WIP-yellow)
 ![Fabric](https://img.shields.io/badge/modloader-Fabric-blue)
-![Minecraft](https://img.shields.io/badge/Minecraft-latest-green)
+![Minecraft](https://img.shields.io/badge/Minecraft-26.1-green)
 
 A tiny personal Fabric mod for modern Minecraft.
 

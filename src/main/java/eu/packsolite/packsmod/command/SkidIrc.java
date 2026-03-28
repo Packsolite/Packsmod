@@ -82,7 +82,7 @@ public class SkidIrc extends SimpleIrcApi {
 	@Override
 	public void addChat(String message) {
 		if (mc.player != null) {
-			mc.execute(() -> mc.player.displayClientMessage(literal(message), false));
+			mc.execute(() -> mc.player.sendSystemMessage(literal(message)));
 		}
 	}
 
