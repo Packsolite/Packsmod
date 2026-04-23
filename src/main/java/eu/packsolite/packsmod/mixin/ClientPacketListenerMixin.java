@@ -2,20 +2,27 @@ package eu.packsolite.packsmod.mixin;
 
 import eu.packsolite.packsmod.command.SkidIrc;
 import eu.packsolite.packsmod.config.ConfigProvider;
+import eu.packsolite.packsmod.feature.ping.PingFeature;
 import eu.packsolite.packsmod.feature.smashmc.SmashMcFeature;
 import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+
 @Mixin(ClientPacketListener.class)
 class ClientPacketListenerMixin {
 
 	@Inject(method = "handleSystemChat", at = @At("HEAD"))
 	void handleSystemChat(ClientboundSystemChatPacket clientboundSystemChatPacket, CallbackInfo ci) {
-		SmashMcFeature.INSTANCE.handleSystemChat(clientboundSystemChatPacket.content());
+		Component content = clientboundSystemChatPacket.content();
+		SmashMcFeature.INSTANCE.handleSystemChat(content);
+		if (content.getString().toLowerCase().contains("unknown")) {
+			PingFeature.INSTANCE.processResponse();
+		}
 	}
 
 	@Inject(method = "sendChat", at = @At("HEAD"), cancellable = true)
@@ -28,6 +35,13 @@ class ClientPacketListenerMixin {
 			if (SkidIrc.getInstance().getCommandHandler().handleCommand(command, arguments)) {
 				ci.cancel();
 			}
+		}
+	}
+
+	@Inject(method = "sendCommand", at = @At("RETURN"))
+	void onSendCommandTail(String message, CallbackInfo callbackInfo) {
+		if (message.startsWith("ping")) {
+			PingFeature.INSTANCE.awaitResponse();
 		}
 	}
 }
