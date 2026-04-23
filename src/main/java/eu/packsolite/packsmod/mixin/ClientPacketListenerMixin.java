@@ -20,7 +20,7 @@ class ClientPacketListenerMixin {
 	void handleSystemChat(ClientboundSystemChatPacket clientboundSystemChatPacket, CallbackInfo ci) {
 		Component content = clientboundSystemChatPacket.content();
 		SmashMcFeature.INSTANCE.handleSystemChat(content);
-		if (content.getString().toLowerCase().contains("unknown")) {
+		if (content.getString().toLowerCase().contains("command")) {
 			PingFeature.INSTANCE.processResponse();
 		}
 	}
