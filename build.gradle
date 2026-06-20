@@ -83,6 +83,12 @@ jar {
 
 shadowJar {
 	configurations = [project.configurations.shadow]
+	archiveClassifier.set("") // Replace the main jar so it includes shadowed deps
+}
+
+jar {
+	enabled = false // Disabled in favor of shadowJar above
+	dependsOn shadowJar
 }
 
 // configure the maven publication
