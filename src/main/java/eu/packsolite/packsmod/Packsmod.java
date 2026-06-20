@@ -41,6 +41,6 @@ public class Packsmod implements ModInitializer {
 	}
 
 	public void openConfigScreen() {
-		Minecraft.getInstance().setScreen(ConfigProvider.getConfigScreen(null));
+		Minecraft.getInstance().setScreenAndShow(ConfigProvider.getConfigScreen(null));
 	}
 }
