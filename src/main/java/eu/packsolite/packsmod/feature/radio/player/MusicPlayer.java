@@ -40,6 +40,15 @@ public class MusicPlayer {
 		this.updatePlayerState();
 	}
 
+	public void shutdown() {
+		// cant use stopPlaying() as that would save the state to config
+		if (player != null) {
+			radioDispatcher.shutdown();
+			player.stop();
+			player = null;
+		}
+	}
+
 	@Synchronized
 	public void nextStream() {
 		this.selectedStreamIndex = (selectedStreamIndex + 1) % streams.size();

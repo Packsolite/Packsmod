@@ -9,6 +9,7 @@ import eu.packsolite.packsmod.feature.smashmc.SmashMcFeature;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
@@ -34,10 +35,18 @@ public class Packsmod implements ModInitializer {
 			}
 		});
 
+		// Register the shutdown hook
+		ClientLifecycleEvents.CLIENT_STOPPING.register(this::onClientShutdown);
+
 		MusicFeature.INSTANCE.init();
 		SmashMcFeature.INSTANCE.init();
 		SkidIrc.getInstance().init();
 		LOGGER.info("(っ◕‿◕)っ Packs mod initialized!");
+	}
+
+	private void onClientShutdown(Minecraft minecraft) {
+		MusicFeature.INSTANCE.shutdown();
+		SkidIrc.getInstance().disable();
 	}
 
 	public void openConfigScreen() {

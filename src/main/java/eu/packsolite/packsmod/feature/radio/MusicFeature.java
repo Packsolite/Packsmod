@@ -12,4 +12,8 @@ public enum MusicFeature {
 	public void init() {
 		musicPlayer.init();
 	}
+
+	public void shutdown() {
+		musicPlayer.shutdown();
+	}
 }
