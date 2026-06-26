@@ -43,10 +43,10 @@ public class MusicPlayer {
 	public void shutdown() {
 		// cant use stopPlaying() as that would save the state to config
 		if (player != null) {
-			radioDispatcher.shutdown();
 			player.stop();
 			player = null;
 		}
+		radioDispatcher.shutdown();
 	}
 
 	@Synchronized
