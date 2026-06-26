@@ -51,7 +51,7 @@ public class SkidIrc extends SimpleIrcApi {
 		String[] versionArgs = mc.getLaunchedVersion().split("-");
 		String version = versionArgs[versionArgs.length - 1];
 		IrcClientFactory factory = IrcClientFactory.getDefault();
-		this.client = factory.createIrcClient("daisy.smashmc.eu", ClientType.FABRIC, "EzVLMm8hXj3fSzFm", ign, version);
+		this.client = factory.createIrcClient("irc.packsolite.eu", ClientType.FABRIC, "EzVLMm8hXj3fSzFm", ign, version);
 		this.client.getApiManager().registerApi(this);
 		Packsmod.LOGGER.info("Skid irc enabled!");
 	}
