@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.PlayerTabOverlay;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,15 +21,25 @@ class PlayerTabOverlayMixin {
 	@Unique
 	private static final ModConfig CONFIG = ConfigProvider.getConfig();
 
-	@Inject(method = "getNameForDisplay", at = @At("RETURN"), cancellable = true)
-	void getName(PlayerInfo playerInfo, CallbackInfoReturnable<Component> info) {
+
+	/**
+	 * private Component decorateName(final PlayerInfo info, final MutableComponent name) {
+	 * return info.getGameMode() == GameType.SPECTATOR ? name.withStyle(ChatFormatting.ITALIC) : name;
+	 * }
+	 *
+	 * @param playerInfo
+	 * @param info
+	 */
+
+	@Inject(method = "decorateName", at = @At("RETURN"), cancellable = true)
+	void decorateName(PlayerInfo playerInfo, MutableComponent name, CallbackInfoReturnable<Component> info) {
 		// is known on smashmc?
 		if (CONFIG.smashmc.playerPrefixes && !isOnSmashMC()) {
 			var type = SmashMcFeature.INSTANCE.getApi().isCurrentlyKnownId(playerInfo.getProfile().id());
 			if (type == SmashApi.IdType.KNOWN) {
-				overridePrefix(info, playerInfo, "§8[§5SmashMC§8]");
+				overridePrefix(info, name, "§8[§5SmashMC§8]");
 			} else if (type == SmashApi.IdType.PENDING) {
-				overridePrefix(info, playerInfo, "§8[§e...§8]");
+				overridePrefix(info, name, "§8[§e...§8]");
 			}
 		}
 	}
@@ -45,25 +56,9 @@ class PlayerTabOverlayMixin {
 	@Unique
 	private void overridePrefix(
 			CallbackInfoReturnable<Component> info,
-			PlayerInfo playerInfo,
+			MutableComponent name,
 			String prefixIn
 	) {
-		StringBuilder prefix = new StringBuilder(prefixIn);
-
-		// name color
-		if (playerInfo.getTeam() != null) {
-			prefix.append(playerInfo.getTeam().getColor());
-			prefix.append(" ");
-		} else {
-			prefix.append("§f ");
-		}
-
-		// name
-		if (playerInfo.getTabListDisplayName() != null) {
-			info.setReturnValue(Component.literal(prefix.toString()).append(playerInfo.getTabListDisplayName()));
-		} else {
-			Component originalTabName = info.getReturnValue();
-			info.setReturnValue(Component.literal(prefix.toString()).append(originalTabName));
-		}
+		info.setReturnValue(Component.literal(prefixIn + " ").append(name));
 	}
 }
