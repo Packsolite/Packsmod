@@ -1,2 +1,2 @@
 @echo off
-opencode run Commit current changes with a short message like recent commits, then push.
+opencode run < automation/prompts/commit.md
