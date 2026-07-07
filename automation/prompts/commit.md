@@ -1,1 +1,1 @@
-Commit current changes with a short message like recent commits, then push.
+Commit current changes with a short message matching the style of recent commits, then push current branch.
