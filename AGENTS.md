@@ -26,7 +26,7 @@ When adding a feature: create package under `feature/`, implement logic there (n
 - Mixins live in `eu.packsolite.packsmod.mixin.*`, declared in `packsmod.mixins.json`.
 - Only inject/callback into feature code — no logic in mixin classes.
 - Use `@Inject`/`@Redirect` over `@Overwrite` when possible.
-- `compatibilityLevel: "JAVA_21"` required in mixin config.
+- `compatibilityLevel: "JAVA_25"` required in mixin config.
 - Access widener is commented out — avoid unless absolutely necessary.
 
 ## Dependency Notes
