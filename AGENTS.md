@@ -35,8 +35,9 @@ When adding a feature: create package under `feature/`, implement logic there (n
 - ShadowJar replaces the main JAR (`jar.enabled = false`).
 
 ## Build & Verification
+Always use `--no-daemon` to prevent background processes from hanging. Use a 20 second timeout for `runClient` — it launches the game and never exits on its own.
 ```bash
-./gradlew --no-daemon runClient        # Run client (verify launch)
+./gradlew --no-daemon runClient        # Run client (verify launch) — use 20s timeout
 ./gradlew --no-daemon build            # Build shadow JAR
 ./gradlew --no-daemon build -x test    # Build without tests
 ```
