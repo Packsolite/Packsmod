@@ -14,6 +14,7 @@ Client-only Fabric mod for modern Minecraft. Minimal QOL features: web radio, Sm
 - **Never** modify Minecraft classes outside mixins.
 - **Never** remove or rename existing mixins.
 - **Never** edit generated resources (e.g., `fabric.mod.json` is expanded at build time).
+- When updating the minecraft dependency in `fabric.mod.json`, note: the dependency uses `alpha-<build>` where `gradle.properties` uses `snapshot-<build>`.
 - **Never** upgrade `jacomp3_volfix.jar` without manual testing — radio system depends on it.
 - **Never** replace the embedded IRC client (`IrcClient.jar`) with a remote dependency.
 - Preserve compatibility with current Fabric Loader version.
