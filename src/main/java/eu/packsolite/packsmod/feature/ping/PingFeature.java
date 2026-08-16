@@ -1,40 +1,31 @@
 package eu.packsolite.packsmod.feature.ping;
 
 import eu.packsolite.packsmod.util.ChatUtil;
-import lombok.Getter;
-import org.jetbrains.annotations.Nullable;
-
-import java.time.Duration;
-import java.time.Instant;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.network.protocol.ping.ClientboundPongResponsePacket;
+import net.minecraft.network.protocol.ping.ServerboundPingRequestPacket;
 
 public enum PingFeature {
 	INSTANCE;
 
-	@Getter
-	@Nullable
-	private Instant lastPingTimestamp;
+	private volatile long outstandingId = -1;
 
 	public void awaitResponse() {
-		this.lastPingTimestamp = Instant.now();
-	}
-
-	public boolean isAwaitingResponse() {
-		return lastPingTimestamp != null;
-	}
-
-	public void processResponse() {
-		if (isAwaitingResponse()) {
-			long ping = yieldResponse();
-			ChatUtil.display("Approximate ping: " + ping + "ms");
+		ClientPacketListener connection = Minecraft.getInstance().getConnection();
+		if (connection == null) {
+			return;
 		}
+		outstandingId = System.currentTimeMillis();
+		connection.send(new ServerboundPingRequestPacket(outstandingId));
 	}
 
-	private long yieldResponse() {
-		if (lastPingTimestamp == null) {
-			return -1;
+	public void onPong(ClientboundPongResponsePacket packet) {
+		if (packet.time() != outstandingId) {
+			return;
 		}
-		long ping = Duration.between(lastPingTimestamp, Instant.now()).toMillis();
-		lastPingTimestamp = null;
-		return ping;
+		outstandingId = -1;
+		long ping = System.currentTimeMillis() - packet.time();
+		ChatUtil.display("Ping: " + ping + "ms");
 	}
 }

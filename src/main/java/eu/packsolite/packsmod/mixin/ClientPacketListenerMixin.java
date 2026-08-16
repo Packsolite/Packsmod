@@ -5,8 +5,8 @@ import eu.packsolite.packsmod.config.ConfigProvider;
 import eu.packsolite.packsmod.feature.ping.PingFeature;
 import eu.packsolite.packsmod.feature.smashmc.SmashMcFeature;
 import net.minecraft.client.multiplayer.ClientPacketListener;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
+import net.minecraft.network.protocol.ping.ClientboundPongResponsePacket;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,11 +18,12 @@ class ClientPacketListenerMixin {
 
 	@Inject(method = "handleSystemChat", at = @At("HEAD"))
 	void handleSystemChat(ClientboundSystemChatPacket clientboundSystemChatPacket, CallbackInfo ci) {
-		Component content = clientboundSystemChatPacket.content();
-		SmashMcFeature.INSTANCE.handleSystemChat(content);
-		if (content.getString().toLowerCase().contains("command")) {
-			PingFeature.INSTANCE.processResponse();
-		}
+		SmashMcFeature.INSTANCE.handleSystemChat(clientboundSystemChatPacket.content());
+	}
+
+	@Inject(method = "handlePongResponse", at = @At("HEAD"))
+	void onPongResponse(ClientboundPongResponsePacket clientboundPongResponsePacket, CallbackInfo ci) {
+		PingFeature.INSTANCE.onPong(clientboundPongResponsePacket);
 	}
 
 	@Inject(method = "sendChat", at = @At("HEAD"), cancellable = true)
