@@ -38,6 +38,6 @@ public class ModConfig implements ConfigData {
 	public IrcConfig irc = new IrcConfig();
 
 	public static class IrcConfig {
-		public boolean enabled = true;
+		public boolean enabled = false;
 	}
 }
